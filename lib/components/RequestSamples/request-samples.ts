@@ -51,6 +51,9 @@ export class RequestSamples extends BaseComponent implements OnInit {
   init() {
     this.schemaPointer = this.schemaPointer ? JsonPointer.join(this.schemaPointer, 'schema') : null;
     this.samples = this.componentSchema['x-code-samples'] || [];
+    if (!(this.samples instanceof Array)) {
+        this.samples = [this.samples];
+    }
     if (!this.schemaPointer && !this.samples.length) this.hidden = true;
   }
 
@@ -58,3 +61,5 @@ export class RequestSamples extends BaseComponent implements OnInit {
     this.preinit();
   }
 }
+
+
